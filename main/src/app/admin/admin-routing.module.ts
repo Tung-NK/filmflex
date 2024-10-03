@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from "./admin.component";
-import { SinginComponent } from './singin/singin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+// import { SinginComponent } from './singin/singin.component';
 
 const routes: Routes = [
   {
     path: '', component: AdminComponent,
     children: [
-      { path: 'singin', component: SinginComponent }
+      { path: '', component: DashboardComponent}
     ]
-  }
+  },
 ];
 
 @NgModule({
