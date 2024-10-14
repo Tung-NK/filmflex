@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,18 +14,18 @@ Route::get('admin', function () {
 
 // Làm từ đây nhé
 
-Route::prefix('admin') -> middleware('...')->group(function (){
+Route::prefix('admin')->middleware('...')->group(function () {
     // Route::get('/', [abc::class , 'fromLogin'])->name('fromLogin')->withoutMiddleware('checkAdmin'); 
     //withoutMiddleware('....')-> bỏ qua kiểm tra của middleware
 
 
-    Route::prefix('movie') -> name('movie.') -> group(function (){
+    Route::prefix('movie')->name('movie.')->group(function () {
         // GET, POST, PUTH , PATCH, DELETE
     });
-
 });
 
 
-Route::prefix('/') -> middleware('...')->group(function (){
-  
-});
+Route::prefix('/')->middleware('...')->group(function () {});
+
+//movie
+Route::resource('admin/catalog', MovieController::class);
