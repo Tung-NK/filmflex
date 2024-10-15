@@ -104,7 +104,7 @@
                                 $("#loginBtn").val('Login');
                             } else {
                                 if (res.status == 200 && res.messages == 'success') {
-                                    window.location = '{{ route('accountlist') }}'
+                                    window.location = '{{ route('movie.catalog.index') }}'
                                 }
                             }
                         }
