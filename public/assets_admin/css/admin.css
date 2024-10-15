@@ -1727,8 +1727,8 @@ body::-webkit-scrollbar-thumb {
   width: auto;
 }
 .sign__logo img {
-  width: auto;
-  height: 24px;
+  width: 180px;
+  height: 82px;
 }
 .sign__title {
   font-size: 20px;
@@ -2305,9 +2305,9 @@ body::-webkit-scrollbar-thumb {
   color: #eb5757;
 }
 @media (min-width: 768px) {
-  .sign__logo {
+  /* .sign__logo {
     margin-bottom: 40px;
-  }
+  } */
   .sign__form {
     padding: 40px 80px;
   }
