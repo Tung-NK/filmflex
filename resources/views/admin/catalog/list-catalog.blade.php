@@ -1,5 +1,5 @@
-@extends('admin.layout.default')
-@section('content')
+@extends('admin.layout.home')
+
 
     <body>
         <!-- main content -->
@@ -210,4 +210,4 @@
         </div> --}}
         <!-- end delete modal -->
     </body>
-@endsection
+

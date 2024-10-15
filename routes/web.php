@@ -23,9 +23,8 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
     Route::get('logout', [AuthenController::class, 'logout'])->name('logout');
 
 
-     Route::prefix('movie')->name('movie.')->group(function () {
+    Route::prefix('movie')->name('movie.')->group(function () {
         Route::resource('catalog', MovieController::class);
-      
     });
 });
 

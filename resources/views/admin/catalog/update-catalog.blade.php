@@ -1,5 +1,5 @@
-@extends('admin.layout.default')
-@section('content')
+@extends('admin.layout.home')
+
 
     <body>
         <!-- main content -->
@@ -155,4 +155,4 @@
         <!-- end main content -->
 
     </body>
-@endsection
+

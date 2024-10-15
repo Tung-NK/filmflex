@@ -46,7 +46,7 @@ class MovieController extends Controller
         }
         $trailerFilePath = null;
         if ($request->hasFile('trailer_url')) {
-            $trailerFilePath = $request->file('trailer_url')->store('trailer', 'public');
+            $trailerFilePath = $request->file('trailer_url')->store('trailers', 'public');
         }
 
         Movie::create([
