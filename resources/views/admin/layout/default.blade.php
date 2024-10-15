@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- CSS -->
+    <!-- CSS -->php ac
     <link rel="stylesheet" href="{{ asset('assets_admin/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_admin/css/slimselect.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_admin/css/admin.css') }}">
@@ -24,7 +24,7 @@
     <meta name="author" content="Dmitry Volkov">
     <title>
         @section('title')
-            FilmFlex | 
+            FilmFlex |
         @show
     </title>
 
@@ -35,18 +35,18 @@
 </head>
 
 <body>
-    @include('admin.layout.sidebar')
-
 
     @yield('content')
 
-
-    @stack('script')
     <!-- JS -->
     <script src="{{ asset('assets_admin/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets_admin/js/slimselect.min.js') }}"></script>
     <script src="{{ asset('assets_admin/js/smooth-scrollbar.js') }}"></script>
     <script src="{{ asset('assets_admin/js/admin.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/showError.js') }}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    @yield('script')
 </body>
 
 <!-- Mirrored from hotflix.volkovdesign.com/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 Sep 2024 03:14:07 GMT -->
