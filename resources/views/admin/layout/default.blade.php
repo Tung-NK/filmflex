@@ -28,6 +28,9 @@
         @show
     </title>
 
+    <meta name='csrf-token' content="{{csrf_token()}}">
+
+
     @stack('style') {{-- chèn css riêng vào vị trí có tên style --}}
 </head>
 
