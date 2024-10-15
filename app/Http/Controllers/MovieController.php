@@ -59,7 +59,7 @@ class MovieController extends Controller
             'age_rating' => $request->age_rating,
         ]);
 
-        return redirect()->route('catalog.index');
+        return redirect()->route('movie.catalog.index');
     }
 
     /**
@@ -124,7 +124,7 @@ class MovieController extends Controller
 
         $movie->save();
 
-        return redirect()->route('catalog.index')->with('success', 'Movie updated successfully');
+        return redirect()->route('movie.catalog.index')->with('success', 'Movie updated successfully');
     }
 
     /**
@@ -134,6 +134,6 @@ class MovieController extends Controller
     {
         $movie = Movie::findOrFail($id);
         $movie->delete();
-        return redirect()->route('catalog.index');
+        return redirect()->route('movie.catalog.index');
     }
 }

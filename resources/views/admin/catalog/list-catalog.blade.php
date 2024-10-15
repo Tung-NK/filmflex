@@ -14,7 +14,8 @@
                             <span class="main__title-stat">14,452 Total</span>
 
                             <div class="main__title-wrap">
-                                <a href="{{ route('catalog.create') }}" class="main__title-link main__title-link--wrap">Add
+                                <a href="{{ route('movie.catalog.create') }}"
+                                    class="main__title-link main__title-link--wrap">Add
                                     item</a>
 
                                 <select class="filter__select" name="sort" id="filter__sort">
@@ -90,16 +91,16 @@
                                                         data-bs-target="#modal-status">
                                                         <i class="ti ti-lock"></i>
                                                     </button>
-                                                    <a href="{{ route('catalog.show', $mc->id) }}"
+                                                    <a href="{{ route('movie.catalog.show', $mc->id) }}"
                                                         class="catalog__btn catalog__btn--view">
                                                         <i class="ti ti-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('catalog.edit', $mc->id) }}"
+                                                    <a href="{{ route('movie.catalog.edit', $mc->id) }}"
                                                         class="catalog__btn catalog__btn--edit">
                                                         <i class="ti ti-edit"></i>
                                                     </a>
-                                                    <form action="{{ route('catalog.destroy', $mc->id) }}" method="POST"
-                                                        style="display:inline;">
+                                                    <form action="{{ route('movie.catalog.destroy', $mc->id) }}"
+                                                        method="POST" style="display:inline;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="catalog__btn catalog__btn--delete"

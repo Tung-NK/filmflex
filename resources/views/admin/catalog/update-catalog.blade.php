@@ -15,7 +15,7 @@
                     <!-- end main title -->
                     <!-- form -->
                     <div class="col-12">
-                        <form action="{{ route('catalog.update', $movie->id) }}" class="sign__form sign__form--add"
+                        <form action="{{ route('movie.catalog.update', $movie->id) }}" class="sign__form sign__form--add"
                             enctype="multipart/form-data" method="POST">
                             @csrf
                             @method('PUT')
@@ -82,7 +82,7 @@
 
                                         <div class="col-12 col-md-6">
                                             <div class="sign__group">
-                                                <input type="text" name="release_date" class="sign__input"
+                                                <input type="date" name="release_date" class="sign__input"
                                                     placeholder="Release Date"
                                                     value="{{ old('release_date', $movie->release_date) }}">
                                                 @error('release_date')
@@ -93,7 +93,7 @@
 
                                         <div class="col-12 col-md-6">
                                             <div class="sign__group">
-                                                <input type="text" name="duration" class="sign__input"
+                                                <input type="time" name="duration" class="sign__input"
                                                     placeholder="Duration" value="{{ old('duration', $movie->duration) }}">
                                                 @error('duration')
                                                     <span class="text-danger">{{ $message }}</span>

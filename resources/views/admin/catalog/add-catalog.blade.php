@@ -15,19 +15,11 @@
                     <!-- end main title -->
                     <!-- form -->
                     <div class="col-12">
-                        <form action="{{ route('catalog.store') }}" method="POST" enctype="multipart/form-data"
+                        <form action="{{ route('movie.catalog.store') }}" method="POST" enctype="multipart/form-data"
                             class="sign__form sign__form--add">
                             @csrf
                             <div class="row">
-                                {{-- @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif --}}
+
                                 <div class="col-12 col-xl-7">
                                     <div class="row">
                                         <div class="col-12">

@@ -52,7 +52,7 @@
             </li>
 
             <li class="sidebar__nav-item">
-                <a href="{{ route('catalog.index') }}" class="sidebar__nav-link"><i class="ti ti-movie"></i>
+                <a href="{{ route('movie.catalog.index') }}" class="sidebar__nav-link"><i class="ti ti-movie"></i>
                     <span>Catalog</span></a>
             </li>
 
