@@ -1,5 +1,9 @@
 @extends('users.layout.default')
 
+@section('title')
+    @parent Home
+@endsection
+
 @section('content')
     <!-- home -->
     <section class="home">

@@ -34,12 +34,12 @@
 
         <div class="sidebar__user-title">
             <span>Admin</span>
-            <p>John Doe</p>
+            <p>{{ session('loggedInUserName') }}</p> 
         </div>
 
-        <button class="sidebar__user-btn" type="button">
+        <a class="sidebar__user-btn" href="{{route('logout')}}">
             <i class="ti ti-logout"></i>
-        </button>
+        </a>
     </div>
     <!-- end sidebar user -->
 

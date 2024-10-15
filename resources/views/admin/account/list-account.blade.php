@@ -1,10 +1,10 @@
-@extends('admin.layout.default')
+@extends('admin.layout.home')
 
 @section('title')
     @parent Tài khoản
 @endsection
 
-@section('content')
+@section('home')
     <!-- main content -->
 	<main class="main">
 		<div class="container-fluid">
