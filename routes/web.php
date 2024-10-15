@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ActorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,16 +14,15 @@ Route::get('admin', function () {
 
 // Làm từ đây nhé
 
-Route::prefix('admin') -> middleware('...')->group(function (){
+
     // Route::get('/', [abc::class , 'fromLogin'])->name('fromLogin')->withoutMiddleware('checkAdmin'); 
     //withoutMiddleware('....')-> bỏ qua kiểm tra của middleware
-
-
-    Route::prefix('movie') -> name('movie.') -> group(function (){
-        // GET, POST, PUTH , PATCH, DELETE
+    Route::prefix('actors')->name('actors.')->group(function () {
+        Route::resource('/', ActorController::class)->parameters(['' => 'actor']);
+        Route::post('{id}/restore', [ActorController::class, 'restore'])->name('restore');
+        Route::delete('{id}/force-delete', [ActorController::class, 'forceDelete'])->name('forceDelete');
     });
 
-});
 
 
 Route::prefix('/') -> middleware('...')->group(function (){
