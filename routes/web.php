@@ -1,19 +1,26 @@
 <?php
 
 
-use App\Http\Controllers\Admin\CountrieController;
+use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\MovieController;
-use App\Http\Controllers\Admin\AccountController;
-use App\Http\Controllers\Admin\AuthenController;
+use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Admin\ActorController;
+use App\Http\Controllers\Admin\AuthenController;
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\CountrieController;
+use App\Http\Controllers\User\UserController;
 
-Route::get('/', function () {
-    return view('users.home');
-}); // DEMO
+//Trang chủ
+Route::get('/',[HomeController::class,'index'])->name('home');
+//Login-Logout User
+Route::get('/login',[UserController::class,'login'])->name('login');
+Route::post('/login',[UserController::class,'postlogin'])->name('postlogin');
+Route::get('/register',[UserController::class,'register'])->name('register');
+Route::post('/register',[UserController::class, 'postRegister']);
+Route::get('/logoutuser',[UserController::class,'logoutuser'])->name('logoutuser');
 
 
 Route::prefix('admin')->middleware('checkAdmin')->group(function () {
@@ -42,4 +49,5 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
 
 
 
-Route::prefix('/')->middleware('...')->group(function () {});
+Route::prefix('/')->middleware('...')->group(function () {
+});
