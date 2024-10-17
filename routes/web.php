@@ -8,7 +8,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\AuthenController;
 use App\Http\Controllers\Admin\ActorController;
-
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,9 +17,15 @@ Route::get('/', function () {
 
 
 Route::prefix('admin')->middleware('checkAdmin')->group(function () {
+
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('indexDashboard');
+    });
+
     Route::get('/', [AuthenController::class, 'formLogin'])->name('formLogin')->withoutMiddleware('checkAdmin');
     Route::post('postLogin', [AuthenController::class, 'postLogin'])->name('postLogin')->withoutMiddleware('checkAdmin');
     Route::get('logout', [AuthenController::class, 'logout'])->name('logout');
+
 
     Route::prefix('countrie')->name('countrie.')->group(function () {
         Route::get('/', [CountrieController::class, 'listCountrie'])->name('listCountrie');

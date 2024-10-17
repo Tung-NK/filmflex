@@ -47,7 +47,7 @@
     <div class="sidebar__nav-wrap">
         <ul class="sidebar__nav">
             <li class="sidebar__nav-item">
-                <a href="index.html" class="sidebar__nav-link sidebar__nav-link--active"><i
+                <a href="{{route('dashboard.indexDashboard')}}" class="sidebar__nav-link sidebar__nav-link--active"><i
                         class="ti ti-layout-grid"></i> <span>Dashboard</span></a>
             </li>
 
@@ -102,7 +102,7 @@
 
     <!-- sidebar copyright -->
     <div class="sidebar__copyright">© FILMFLEX, 2024—2025. <br>Create by <a
-            href="https://themeforest.net/user/dmitryvolkov/portfolio" target="_blank">Dmitry Volkov</a></div>
+            href="https://themeforest.net/user/dmitryvolkov/portfolio" target="_blank">WD-47</a></div>
     <!-- end sidebar copyright -->
 </div>
 <!-- end sidebar -->
