@@ -23,15 +23,18 @@ class LoginRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
+            'email' => 'required|email',
             'password' => 'required',
         ];
     }
     public function messages():array
     {
         return[
-            'name.required'=>'Tiêu đề không rỗng',
+            'name.required'=>'Tên không được bỏ trống',
             'name.max'=>'Tiêu đề tối đa 255 ký tự',
-            'password.required'=>'Nội dung không rỗng',
+            'email.required'=>'Email không đươc bỏ trống',
+            'email.email'=>'Email không đúng định dạng',
+            'password.required'=>'Password không được để trống',
         ];
     }
 }

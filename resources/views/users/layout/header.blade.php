@@ -131,6 +131,12 @@
                                 <i class="ti ti-user"></i>
                                 <span>Nich Name</span>
                             </a>
+                            <ul
+                                class="dropdown-menu dropdown-menu-end header__dropdown-menu header__dropdown-menu--user">
+                                <li><a href="{{ route('login') }}"><i class="ti ti-ghost"></i>Sign in</a></li>
+                                <li><a href="{{ route('register') }}"><i class="ti ti-stereo-glasses"></i>Sign up</a>
+                                </li>
+                            </ul>
                         </div>
                         @endif
                         <!-- end dropdown -->

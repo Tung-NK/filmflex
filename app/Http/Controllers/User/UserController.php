@@ -17,13 +17,9 @@ class UserController extends Controller
     public function register(){
         return view('users.authentication.register');
     }
-    public function postRegister(Request $request){
+    public function postRegister(LoginRequest $request){
         $request->merge(['password'=>Hash::make($request->password)]);
-        try {
-            User::create($request->all());
-        } catch (\Throwable $th) {
-            dd($th);
-        }
+        User::create($request->all());
         return redirect()->route('login')->with('success','Đăng ký thành công vui lòng đăng nhập!');
     }
     public function postlogin( Request $request){
