@@ -1,5 +1,9 @@
 @extends('admin.layout.home')
 
+@section('title')
+    @parent
+    Thêm mới phim
+@endsection
 
 <body>
     <!-- main content -->

@@ -34,10 +34,10 @@
 
         <div class="sidebar__user-title">
             <span>Admin</span>
-            <p>{{ session('loggedInUserName') }}</p> 
+            <p>{{ session('loggedInUserName') }}</p>
         </div>
 
-        <a class="sidebar__user-btn" href="{{route('logout')}}">
+        <a class="sidebar__user-btn" href="{{ route('logout') }}">
             <i class="ti ti-logout"></i>
         </a>
     </div>
@@ -53,7 +53,7 @@
 
             <li class="sidebar__nav-item">
                 <a href="{{ route('movie.catalog.index') }}" class="sidebar__nav-link"><i class="ti ti-movie"></i>
-                    <span>Catalog</span></a>
+                    <span>Movie</span></a>
             </li>
 
             <li class="sidebar__nav-item">
