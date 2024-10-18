@@ -61,6 +61,10 @@
             </li>
 
             <li class="sidebar__nav-item">
+                <a href="{{ route('directors.index') }}" class="sidebar__nav-link"><i class="ti ti-users"></i> <span>Director</span></a>
+            </li>
+
+            <li class="sidebar__nav-item">
                 <a href="comments.html" class="sidebar__nav-link"><i class="ti ti-message"></i>
                     <span>Comments</span></a>
             </li>
