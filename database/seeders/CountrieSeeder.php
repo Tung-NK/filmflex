@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Countrie;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\admin\Countrie;
 class CountrieSeeder extends Seeder
 {
     /**
