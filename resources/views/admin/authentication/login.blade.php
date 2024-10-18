@@ -74,10 +74,8 @@
                 if (!email) {
                     showError('email', "Không bỏ trống email")
                     isCheck = false;
-                }else if(email == /^[^\s@]+@[^\s@]+\.[^\s@]+$/){
-                    showError('email', "Không đúng định dạng")
                 }
-
+                
                 if (!password) {
                     showError('password', "Không bỏ trống password")
                     isCheck = false;
@@ -104,7 +102,7 @@
                                 $("#loginBtn").val('Login');
                             } else {
                                 if (res.status == 200 && res.messages == 'success') {
-                                    window.location = '{{ route('movie.catalog.index') }}'
+                                    window.location = '{{ route('dashboard.indexDashboard') }}'
                                 }
                             }
                         }

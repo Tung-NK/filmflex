@@ -5,7 +5,7 @@
             <div class="col-12">
                 <div class="header__content">
                     <!-- header logo -->
-                    <a href="index.html" class="header__logo">
+                    <a href="{{ route('home') }}" class="header__logo">
                         <img src="{{ asset('assets_user/img/logo2.svg') }}" alt="">
                     </a>
                     <!-- end header logo -->
@@ -63,10 +63,10 @@
                         <!-- dropdown -->
                         <li class="header__nav-item">
                             <a class="header__nav-link header__nav-link--more" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots"></i></a>
-
+                                data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots"></i>
+                            </a>
                             <ul class="dropdown-menu header__dropdown-menu">
-                                <li><a href="signin.html">Sign in</a></li>
+                                <li><a href="{{ route('login') }}">Sign in</a></li>
                                 <li><a href="signup.html">Sign up</a></li>
                                 <li><a href="forgot.html">Forgot password</a></li>
                                 <li><a href="404.html">404 Page</a></li>
@@ -106,11 +106,12 @@
                         <!-- end dropdown -->
 
                         <!-- dropdown -->
+                        @if(Auth::check())
                         <div class="header__profile">
                             <a class="header__sign-in header__sign-in--user" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="ti ti-user"></i>
-                                <span>Nickname</span>
+                                <span>{{ Auth::user()->name }}</span>
                             </a>
 
                             <ul
@@ -120,9 +121,18 @@
                                 </li>
                                 <li><a href="profile.html"><i class="ti ti-bookmark"></i>Favorites</a></li>
                                 <li><a href="profile.html"><i class="ti ti-settings"></i>Settings</a></li>
-                                <li><a href="#"><i class="ti ti-logout"></i>Logout</a></li>
+                                <li><a href="{{ route('logoutuser') }}"><i class="ti ti-logout"></i>Logout</a></li>
                             </ul>
                         </div>
+                        @else
+                        <div class="header__profile">
+                            <a class="header__sign-in header__sign-in--user" href="{{ route('login') }}" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="ti ti-user"></i>
+                                <span>Nich Name</span>
+                            </a>
+                        </div>
+                        @endif
                         <!-- end dropdown -->
                     </div>
                     <!-- end header auth -->

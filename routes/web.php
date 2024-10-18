@@ -1,25 +1,43 @@
 <?php
 
-
-use App\Http\Controllers\Admin\CountrieController;
-
-
-use App\Http\Controllers\MovieController;
-use App\Http\Controllers\Admin\AccountController;
-use App\Http\Controllers\Admin\AuthenController;
-use App\Http\Controllers\Admin\ActorController;
-
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('users.home');
-}); // DEMO
+
+
+
+use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\Admin\ActorController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AuthenController;
+use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\CountrieController;
+use App\Http\Controllers\admin\DirectorController;
+use App\Http\Controllers\Admin\MovieController;
+
+use App\Http\Controllers\User\UserController;
+
+
+
+//Trang chủ
+Route::get('/', [HomeController::class, 'index'])->name('home');
+//Login-Logout User
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login', [UserController::class, 'postlogin'])->name('postlogin');
+Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/register', [UserController::class, 'postRegister']);
+Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');
 
 
 Route::prefix('admin')->middleware('checkAdmin')->group(function () {
+
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('indexDashboard');
+    });
+
     Route::get('/', [AuthenController::class, 'formLogin'])->name('formLogin')->withoutMiddleware('checkAdmin');
     Route::post('postLogin', [AuthenController::class, 'postLogin'])->name('postLogin')->withoutMiddleware('checkAdmin');
     Route::get('logout', [AuthenController::class, 'logout'])->name('logout');
+
 
     Route::prefix('countrie')->name('countrie.')->group(function () {
         Route::get('/', [CountrieController::class, 'listCountrie'])->name('listCountrie');
@@ -31,12 +49,18 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
 
     Route::prefix('movie')->name('movie.')->group(function () {
         Route::resource('catalog', MovieController::class);
+        Route::post('catalog/{id}/restore', [MovieController::class, 'restore'])->name('movie.catalog.restore');
+        Route::delete('catalog/{id}/force-delete', [MovieController::class, 'forceDelete'])->name('movie.catalog.forceDelete');
     });
 
     Route::prefix('actors')->name('actors.')->group(function () {
         Route::resource('/', ActorController::class)->parameters(['' => 'actor']);
         Route::post('{id}/restore', [ActorController::class, 'restore'])->name('restore');
         Route::delete('{id}/force-delete', [ActorController::class, 'forceDelete'])->name('forceDelete');
+    });
+
+    Route::prefix('directors')->name('directors.')->group(function () {
+        Route::resource('/', DirectorController::class)->parameters(['' => 'director']);
     });
 });
 

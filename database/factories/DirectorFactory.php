@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Factories\admin;
+namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\admin\Countrie>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Director>
  */
-class CountrieFactory extends Factory
+class DirectorFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,8 @@ class CountrieFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=> fake()->name,
+            'director_name' => fake()->name(),
+            'biography' => fake()->text()
         ];
     }
 }
