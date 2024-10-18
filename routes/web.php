@@ -1,19 +1,17 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
-
-
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Admin\ActorController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AuthenController;
-
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\CountrieController;
 use App\Http\Controllers\admin\DirectorController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Director;
+
 
 //Trang chủ
 Route::get('/',[HomeController::class,'index'])->name('home');
@@ -26,9 +24,15 @@ Route::get('/logoutuser',[UserController::class,'logoutuser'])->name('logoutuser
 
 
 Route::prefix('admin')->middleware('checkAdmin')->group(function () {
+
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('indexDashboard');
+    });
+
     Route::get('/', [AuthenController::class, 'formLogin'])->name('formLogin')->withoutMiddleware('checkAdmin');
     Route::post('postLogin', [AuthenController::class, 'postLogin'])->name('postLogin')->withoutMiddleware('checkAdmin');
     Route::get('logout', [AuthenController::class, 'logout'])->name('logout');
+
 
     Route::prefix('countrie')->name('countrie.')->group(function () {
         Route::get('/', [CountrieController::class, 'listCountrie'])->name('listCountrie');
