@@ -55,7 +55,10 @@
                 <a href="{{ route('movie.catalog.index') }}" class="sidebar__nav-link"><i class="ti ti-movie"></i>
                     <span>Catalog</span></a>
             </li>
-
+            <li class="sidebar__nav-item">
+            <a href="{{ route('actors.index') }}" class="sidebar__nav-link"><i class="ti ti-user"></i>
+                <span>Actor</span></a> 
+            </li>
             <li class="sidebar__nav-item">
                 <a href="users.html" class="sidebar__nav-link"><i class="ti ti-users"></i> <span>Users</span></a>
             </li>

@@ -7,16 +7,26 @@ use App\Models\Actor;
 use App\Http\Requests\StoreActorRequest;
 use App\Http\Requests\UpdateActorRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class ActorController extends Controller
 {
     
     const PATH_VIEW='admin/actors.';
-    public function index()
+    public function index(Request $request)
     {
         //$data = Actor::query()->get();
-        $data = Actor::withTrashed()->get();
-        return view(self::PATH_VIEW.__FUNCTION__,compact('data'));
+        $search = $request->input('search');
+        $data = Actor::withTrashed()->when($search, function ($query) use ($search) {
+            return $query->where('actor_name', 'LIKE', "%{$search}%");
+        })->paginate(4);
+         // Lấy thông tin cần thiết cho paginator
+        $currentPage = $data->currentPage(); // Trang hiện tại
+        $total = $data->total(); // Tổng số item
+        $perPage = $data->perPage(); // Số lượng item trên mỗi trang
+        $totalPages = $data->lastPage(); // Tổng số trang
+
+        return view(self::PATH_VIEW.__FUNCTION__,compact('data', 'currentPage', 'total', 'perPage', 'totalPages', 'search'));
     }
 
    
