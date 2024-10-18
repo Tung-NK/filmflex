@@ -3404,8 +3404,8 @@ body::-webkit-scrollbar-thumb {
   order: 1;
 }
 .footer__logo img {
-  width: auto;
-  height: 20px;
+  width: 182;
+  height: 80px;
   display: block;
 }
 .footer__nav {
@@ -3462,7 +3462,8 @@ body::-webkit-scrollbar-thumb {
 }
 @media (min-width: 768px) {
   .footer__logo img {
-    height: 22px;
+    width: 182px;
+    height: 80px;
   }
   .footer__content {
     flex-direction: row;

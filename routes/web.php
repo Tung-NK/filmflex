@@ -12,13 +12,13 @@ use App\Http\Controllers\User\UserController;
 
 
 //Trang chủ
-Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 //Login-Logout User
-Route::get('/login',[UserController::class,'login'])->name('login');
-Route::post('/login',[UserController::class,'postlogin'])->name('postlogin');
-Route::get('/register',[UserController::class,'register'])->name('register');
-Route::post('/register',[UserController::class, 'postRegister']);
-Route::get('/logoutuser',[UserController::class,'logoutuser'])->name('logoutuser');
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login', [UserController::class, 'postlogin'])->name('postlogin');
+Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/register', [UserController::class, 'postRegister']);
+Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');
 
 
 Route::prefix('admin')->middleware('checkAdmin')->group(function () {
@@ -30,6 +30,12 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
     Route::get('/', [AuthenController::class, 'formLogin'])->name('formLogin')->withoutMiddleware('checkAdmin');
     Route::post('postLogin', [AuthenController::class, 'postLogin'])->name('postLogin')->withoutMiddleware('checkAdmin');
     Route::get('logout', [AuthenController::class, 'logout'])->name('logout');
+
+    Route::get('fogot-pass', [AuthenController::class, 'forgotPass'])->name('forgotPass')->withoutMiddleware('checkAdmin');
+    Route::post('fogot-pass', [AuthenController::class, 'forgotPassPost'])->name('forgotPassPost')->withoutMiddleware('checkAdmin');
+
+    Route::get('reset-pass/{token}', [AuthenController::class, 'resetPass'])->name('resetPass')->withoutMiddleware('checkAdmin');
+    Route::post('reset-pass', [AuthenController::class, 'resetPostPass'])->name('resetPostPass')->withoutMiddleware('checkAdmin');
 
 
     Route::prefix('countrie')->name('countrie.')->group(function () {
@@ -53,5 +59,4 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
 
 
 
-Route::prefix('/')->middleware('...')->group(function () {
-});
+Route::prefix('/')->middleware('...')->group(function () {});
