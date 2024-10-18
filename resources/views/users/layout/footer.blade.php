@@ -5,12 +5,11 @@
              <div class="col-12">
                  <div class="footer__content">
                      <a href="index.html" class="footer__logo">
-                         <img src="img/logo.svg" alt="">
+                         <img src="{{asset('assets_admin/img/logo2.svg')}}" alt="">
                      </a>
 
-                     <span class="footer__copyright">© FILMFLEX, 2019—2024 <br> Create by <a
-                             href="https://themeforest.net/user/dmitryvolkov/portfolio" target="_blank">Dmitry
-                             Volkov</a></span>
+                     <span class="footer__copyright">© FILMFLEX, 2024—2025 <br> Create by <a
+                             href="https://themeforest.net/user/dmitryvolkov/portfolio" target="_blank">WD-47</a></span>
 
                      <nav class="footer__nav">
                          <a href="about.html">About Us</a>
