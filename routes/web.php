@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\CountrieController;
 use App\Http\Controllers\admin\DirectorController;
 use App\Http\Controllers\User\UserController;
-use App\Models\Director;
+
 
 
 //Trang chủ
