@@ -2,10 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Countrie;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+<<<<<<< HEAD
 use App\Models\Countrie;
 
+=======
+>>>>>>> reset_password
 class CountrieSeeder extends Seeder
 {
     /**

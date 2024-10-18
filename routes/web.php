@@ -38,6 +38,12 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
     Route::post('postLogin', [AuthenController::class, 'postLogin'])->name('postLogin')->withoutMiddleware('checkAdmin');
     Route::get('logout', [AuthenController::class, 'logout'])->name('logout');
 
+    Route::get('fogot-pass', [AuthenController::class, 'forgotPass'])->name('forgotPass')->withoutMiddleware('checkAdmin');
+    Route::post('fogot-pass', [AuthenController::class, 'forgotPassPost'])->name('forgotPassPost')->withoutMiddleware('checkAdmin');
+
+    Route::get('reset-pass/{token}', [AuthenController::class, 'resetPass'])->name('resetPass')->withoutMiddleware('checkAdmin');
+    Route::post('reset-pass', [AuthenController::class, 'resetPostPass'])->name('resetPostPass')->withoutMiddleware('checkAdmin');
+
 
     Route::prefix('countrie')->name('countrie.')->group(function () {
         Route::get('/', [CountrieController::class, 'listCountrie'])->name('listCountrie');

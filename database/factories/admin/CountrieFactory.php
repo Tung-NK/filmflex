@@ -5,7 +5,7 @@ namespace Database\Factories\admin;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\admin\Countrie>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Countrie>
  */
 class CountrieFactory extends Factory
 {
