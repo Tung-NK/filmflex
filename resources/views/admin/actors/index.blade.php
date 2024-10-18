@@ -77,7 +77,7 @@
                                     <div class="catalog__btns">
                                         @if(!$item->trashed())
                                             <div style="display: flex; align-items: center;">
-                                                <a href="{{ route('actors.edit', $item->id) }}" class="catalog__btn catalog__btn--edit" style="height: 40px; padding: 0 10px; line-height: 40px;">
+                                                <a href="{{ route('actors.edit', $item->id) }}" class="catalog__btn catalog__btn--edit  mb-3" style="height: 40px; padding: 0 10px; line-height: 40px;">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form action="{{ route('actors.destroy', $item->id) }}" method="POST" style="display:inline; margin-left: 5px;">
@@ -92,7 +92,7 @@
                                             <div style="display: flex; align-items: center;">
                                                 <form action="{{ route('actors.restore', $item->id) }}" method="POST" style="display:inline;">
                                                     @csrf
-                                                    <button type="submit" class="catalog__btn" style="color: #28a745; background: none; border: none; height: 40px; padding: 0 10px; line-height: 40px;">
+                                                    <button type="submit" class="catalog__btn " style="color: #28a745; background: none; border: none; height: 40px; padding: 0 10px; line-height: 40px; ">
                                                         <i class="ti ti-refresh" style="font-size: 1.5rem;"></i>
                                                     </button>
                                                 </form>
