@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $movies = Movie::all();
+        $movies = Movie::withTrashed()->paginate(5);
         return view('admin.catalog.list-catalog', compact('movies'));
     }
 
@@ -135,5 +133,30 @@ class MovieController extends Controller
         $movie = Movie::findOrFail($id);
         $movie->delete();
         return redirect()->route('movie.catalog.index');
+    }
+    //khôi phục
+    public function restore($id)
+    {
+        $movie = Movie::withTrashed()->find($id);
+        if ($movie) {
+            $movie->restore();
+            return back()->with('success', 'Movie restored.');
+        }
+
+        return back()->with('error', 'Movie not found.');
+    }
+    //xóa vĩnh viễn
+    public function forceDelete($id)
+    {
+        $movie = Movie::withTrashed()->find($id);
+        if ($movie) {
+            if ($movie->image && Storage::exists($movie->image)) {
+                Storage::delete($movie->image);
+            }
+            $movie->forceDelete();
+            return back()->with('success', 'Movie permanently deleted.');
+        }
+
+        return back()->with('error', 'Movie not found.');
     }
 }
