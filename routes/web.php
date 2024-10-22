@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ActorController;
 use App\Http\Controllers\Admin\AuthenController;
 
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\Admin\CountrieController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\User\UserController;
@@ -47,6 +48,11 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
         Route::resource('/', ActorController::class)->parameters(['' => 'actor']);
         Route::post('{id}/restore', [ActorController::class, 'restore'])->name('restore');
         Route::delete('{id}/force-delete', [ActorController::class, 'forceDelete'])->name('forceDelete');
+    });
+    Route::prefix('admin-management')->name('admin-management.')->group(function () {
+        Route::resource('admins', AdminController::class);
+        Route::post('admins/{id}/restore', [AdminController::class, 'restore'])->name('admin.restore');
+        Route::delete('admins/{id}/force-delete', [AdminController::class, 'forceDelete'])->name('admin.forceDelete');
     });
 });
 

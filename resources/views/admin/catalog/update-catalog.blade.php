@@ -58,7 +58,8 @@
                                             @enderror
                                             <img src="{{ asset('storage/' . $movie->poster_url) }}" alt=""
                                                 width="700px
-                                                ">
+                                                "
+                                                class="mt-4">
                                         </div>
                                     </div>
 

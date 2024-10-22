@@ -57,6 +57,11 @@
             </li>
 
             <li class="sidebar__nav-item">
+                <a href="{{ route('admin-management.admins.index') }}" class="sidebar__nav-link"><i
+                        class="ti ti-users"></i>
+                    <span>Admin</span></a>
+            </li>
+            <li class="sidebar__nav-item">
                 <a href="users.html" class="sidebar__nav-link"><i class="ti ti-users"></i> <span>Users</span></a>
             </li>
 
