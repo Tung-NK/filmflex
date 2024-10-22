@@ -28,9 +28,9 @@ class CountrieController extends Controller
         ]);
     }
     public function deleteCountrie(Request $req){
-        // $req->validate([
-        //     'id'=>'required',
-        // ]);
+        $req->validate([
+            'id'=>'required',
+        ]);
         Countrie::where('id',$req->id)->delete();
         return redirect()->back()->with([
             'message' => 'Xóa thành công'
