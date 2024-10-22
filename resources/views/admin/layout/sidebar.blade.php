@@ -48,38 +48,47 @@
         <ul class="sidebar__nav">
             <li class="sidebar__nav-item">
                 <a href="{{route('dashboard.indexDashboard')}}" class="sidebar__nav-link sidebar__nav-link--active"><i
-                        class="ti ti-layout-grid"></i> <span>Dashboard</span></a>
+                class="ti ti-layout-grid"></i> <span>Dashboard</span></a>
             </li>
 
             <li class="sidebar__nav-item">
                 <a href="{{ route('movie.catalog.index') }}" class="sidebar__nav-link"><i class="ti ti-movie"></i>
-                    <span>Movie</span></a>
+                <span>Movie</span></a>
             </li>
             <li class="sidebar__nav-item">
-            <a href="{{ route('actors.index') }}" class="sidebar__nav-link"><i class="ti ti-user"></i>
+                <a href="{{ route('actors.index') }}" class="sidebar__nav-link"><i class="ti ti-user"></i>
                 <span>Actor</span></a> 
             </li>
             <li class="sidebar__nav-item">
-                <a href="users.html" class="sidebar__nav-link"><i class="ti ti-users"></i> <span>Users</span></a>
+                <a href="users.html" class="sidebar__nav-link"><i class="ti ti-users"></i>
+                <span>Users</span></a>
             </li>
 
             <li class="sidebar__nav-item">
-                <a href="{{ route('directors.index') }}" class="sidebar__nav-link"><i class="ti ti-users"></i> <span>Director</span></a>
+                <a href="{{ route('directors.index') }}" class="sidebar__nav-link"><i class="ti ti-users"></i> 
+                <span>Director</span></a>
+            </li>
+
+            <li class="sidebar__nav-item">
+                <a href="{{ route('genres.index') }}" class="sidebar__nav-link"><i class="ti ti-category"></i>
+                <span>Genres</span></a> 
             </li>
 
             <li class="sidebar__nav-item">
                 <a href="comments.html" class="sidebar__nav-link"><i class="ti ti-message"></i>
-                    <span>Comments</span></a>
+                <span>Comments</span></a>
             </li>
 
             <li class="sidebar__nav-item">
                 <a href="reviews.html" class="sidebar__nav-link"><i class="ti ti-star-half-filled"></i>
-                    <span>Reviews</span></a>
+                <span>Reviews</span></a>
             </li>
 
             <li class="sidebar__nav-item">
-                <a href="settings.html" class="sidebar__nav-link"><i class="ti ti-settings"></i>
-                    <span>Settings</span></a>
+                <a href="settings.html" class="sidebar__nav-link">
+                    <i class="ti ti-settings"></i>
+                    <span>Settings</span>
+                </a>
             </li>
 
             <!-- dropdown -->

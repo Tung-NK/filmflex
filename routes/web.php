@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AuthenController;
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\CountrieController;
 use App\Http\Controllers\admin\DirectorController;
+use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\MovieController;
 
 use App\Http\Controllers\User\UserController;
@@ -63,6 +64,12 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
         Route::resource('/', ActorController::class)->parameters(['' => 'actor']);
         Route::post('{id}/restore', [ActorController::class, 'restore'])->name('restore');
         Route::delete('{id}/force-delete', [ActorController::class, 'forceDelete'])->name('forceDelete');
+    });
+
+    Route::prefix('genres')->name('genres.')->group(function () {
+        Route::resource('/', GenreController::class)->parameters(['' => 'genre']);
+        Route::post('{id}/restore', [GenreController::class, 'restore'])->name('restore');
+        Route::delete('{id}/force-delete', [GenreController::class, 'forceDelete'])->name('forceDelete');
     });
 
     Route::prefix('directors')->name('directors.')->group(function () {
