@@ -15,7 +15,7 @@
             <!-- main title -->
             <div class="col-12">
                 <div class="main__title">
-                    <h2>Users</h2>
+                    <h2>Countries</h2>
 
                     <span class="main__title-stat">3,702 Total</span>
 
@@ -42,7 +42,7 @@
             </div>
             <!-- end main title -->
 
-            <!-- users -->
+            <!-- countries -->
             <div class="col-12">
                 <div class="catalog catalog--1">
                     @if (session('message'))
@@ -97,7 +97,7 @@
                     </table>
                 </div>
             </div>
-            <!-- end users -->
+            <!-- end countries -->
 
             {{-- paginator- phân trang  --}}
             <div class="col-12">
@@ -194,7 +194,7 @@
                         <div class="col-12">
                             <div class="sign__group">
                                 <label class="sign__label" for="nameUpdate">Name</label>
-                                <input id="nameUpdate" type="text" name="name" class="sign__input">
+                                <input id="nameUpdate" value="" type="text" name="name" class="sign__input">
                             </div>
                         </div>
                         <div class="col-12 col-lg-6 offset-lg-3">
@@ -233,7 +233,6 @@
 @push('script')
     <script>
         var exampleModal = document.getElementById('modalDelete');
-    
         exampleModal.addEventListener('show.bs.modal', function(event) {
             // Button that triggered the modal
             var button = event.relatedTarget;
@@ -248,7 +247,6 @@
         });
 
         var modalEdit = document.getElementById('modalEdit');
-    
         modalEdit.addEventListener('show.bs.modal', function(event) {
             // Button that triggered the modal
             var button = event.relatedTarget;
@@ -270,30 +268,5 @@
                 })
         });
 
-        // var modalEdit = document.getElementById('modalEdit');
-        // var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-        // modalEdit.addEventListener('show.bs.modal', function(event) {
-        //     var button = event.relatedTarget;
-        //     var idCountrie = button.getAttribute('data-id');
-
-        //     let url = "{{ route('countrie.detailCountrie') }}?id=" + idCountrie;
-
-        //     fetch(url, {
-        //             headers: {
-        //                 'Content-Type': 'application/json',
-        //                 'Accept': 'application/json',
-        //                 'X-CSRF-TOKEN': csrfToken
-        //             }
-        //         })
-        //         .then((response) => response.json())
-        //         .then((data) => {
-        //             console.log(data->name);
-
-        //             // document.querySelector('#idCountrieUpdate').value = data.id
-        //             // document.querySelector('#nameUpdate').value = data.name
-
-        //         });
-        // });
     </script>
 @endpush

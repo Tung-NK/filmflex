@@ -34,11 +34,9 @@
 </head>
 
 <body>
-    @include('users.layout.header')
 
     @yield('content')
 
-    @include('users.layout.footer')
 
     <!-- JS -->
     <script src="{{ asset('assets_user/js/bootstrap.bundle.min.js') }}"></script>

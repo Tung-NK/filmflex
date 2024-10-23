@@ -15,7 +15,8 @@ class CountrieController extends Controller
         return view('admin.countries.list')->with(['listCountrie' => $listCountrie]);
     }
     public function addCountrie(Request $req){
-        $req  ->validate([
+        dd($req->name);
+                $req  ->validate([
             'name' => 'required',
         ]);
 

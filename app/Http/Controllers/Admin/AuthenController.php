@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class AuthenController extends Controller
 {
@@ -111,9 +114,70 @@ class AuthenController extends Controller
         //     'err' => 'Đăng xuất thành công'
         // ]);
 
-        if(session()->has('loggedInUser')){
-            session() -> pull('loggedInUser');
+        if (session()->has('loggedInUser')) {
+            session()->pull('loggedInUser');
             return redirect()->route('formLogin');
         }
     }
+
+    public function forgotPass()
+    {
+        return view('admin.authentication.forgot');
+    }
+
+    public function forgotPassPost(Request $req)
+    {
+        $req->validate([
+            'email' => ['required', 'email', 'exists:users']
+        ]);
+
+        $token = Str::random(64);
+
+        DB::table('password_reset_tokens')->insert([
+            'email' => $req->email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
+
+        Mail::send('admin.authentication.forget-pass', ['token' => $token], function ($mes) use ($req) {
+            $mes->to($req->email);
+            $mes->subject("Reset Password");
+        });
+
+        return redirect()->route('forgotPass')->with([
+            'messageErr' => 'Vui lòng kiếm tra email của bạn'
+        ]);
+    }
+
+    public function resetPass($token)
+    {
+        return view('admin.authentication.newpass', compact('token'));
+    }
+
+    public function resetPostPass(Request $req)
+    {
+        $req->validate([
+            'email' => "required|email|exists:users",
+            'password' => "required",
+            'passCf' => "required|same:password",
+        ]);
+
+        $updatePass = DB::table('password_reset_tokens')->where([
+            'email' => $req->email,
+            'token' => $req->token
+        ])->first();
+
+        // if (!$updatePass) {
+        //     return redirect()->route('resetPass', ['token' => $req->token])->with([
+        //         'messageErr' => 'Lỗi'
+        //     ]);
+        // }
+
+        User::where('email', $req->email)->update(['password' => Hash::make($req->password)]);
+        DB::table('password_reset_tokens')->where(['email' => $req->email])->delete();
+        return redirect()->route('formLogin')->with([
+            'messageErr' => 'Reset password thành công'
+        ]);
+    }
+
 }

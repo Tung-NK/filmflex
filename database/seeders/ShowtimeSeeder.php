@@ -4,15 +4,16 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Countrie;
+use App\Models\Showtime;
 
-class CountrieSeeder extends Seeder
+class ShowtimeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Countrie::factory(15)->create();
+        //
+        Showtime::factory(15)->create();
     }
 }

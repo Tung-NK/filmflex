@@ -8,13 +8,34 @@
 <main class="main">
     <div class="container-fluid">
         <div class="row">
+            <!-- main title -->
             <div class="col-12">
                 <div class="main__title">
-                    <h2>Add New Actor</h2>
+                    <h2> Add Actor</h2>
+                    <span class="main__title-stat">14,452 Total</span>
+                    <div class="main__title-wrap">
+                     
+                    <a href="{{ route('actors.index') }}"
+                                    class="main__title-link main__title-link--wrap">Back to List</a> 
+                        <select class="filter__select" name="sort" id="filter__sort">
+                            <option value="0">Date created</option>
+                            <option value="1">Rating</option>
+                            <option value="2">Views</option>
+                        </select>
+                        <!-- search -->
+                        <form action="#" class="main__title-form">
+                            <input type="text" placeholder="Find movie / tv series..">
+                            <button type="button">
+                                <i class="ti ti-search"></i>
+                            </button>
+                        </form>
+                        <!-- end search -->
+                    </div>
                 </div>
-
-                <a href="{{ route('actors.index') }}" class="btn btn-warning" style="color: white;">Back to List</a>
-
+            </div>
+            <!-- end main title -->
+            <div class="col-12">
+                
                 <div class="catalog catalog--1" style="margin-top: 20px;">
                     <form action="{{ route('actors.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
