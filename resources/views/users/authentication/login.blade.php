@@ -13,32 +13,41 @@
                         </a>
 
                         <div class="sign__group">
-                            <input type="text" class="sign__input" placeholder="Email" name="email">
+                            <input type="text" class="sign__input" placeholder="Email" name="email" id="email" value="{{ old('email') }}">
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="sign__group">
-                            <input type="password" class="sign__input" placeholder="Password" name="password">
+                            <input type="password" class="sign__input" placeholder="Password" name="password" id="password">
+                            @error('password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="sign__group sign__group--checkbox">
                             <input id="remember" name="remember" type="checkbox" checked="checked">
                             <label for="remember">Remember Me</label>
                         </div>
+                        
                         {{-- Thông báo lỗi --}}
-                        @if ($message = Session::get('error'))
+                        @if ($errors->has('error'))
                             <div class="alert alert-danger alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>	
+                                    <strong>{{ $errors->first('error') }}</strong>
+                            </div>
+                        @endif
+                        
+                        {{-- Thông báo thành công --}}
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-block">
                                 <button type="button" class="close" data-dismiss="alert">×</button>	
                                     <strong>{{ $message }}</strong>
                             </div>
                         @endif
-                        {{-- Thông báo thành công --}}
-                        @if ($message = Session::get('success'))
-                        <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>	
-                                <strong>{{ $message }}</strong>
-                        </div>
-                        @endif
-                        <button class="sign__btn" type="submit">Sign in</button>
+                        
+                        <button class="sign__btn" >Sign in</button>
 
                         <span class="sign__delimiter">or</span>
 

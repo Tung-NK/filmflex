@@ -23,11 +23,25 @@ class UserController extends Controller
         return redirect()->route('login')->with('success','Đăng ký thành công vui lòng đăng nhập!');
     }
     public function postlogin( Request $request){
-        
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            return redirect()->route('home');
+        $validate = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ], [
+            'email.required' => 'Vui lòng nhập Email!',
+            'email.email' => 'Vui lòng nhập Email hợp lệ!',
+            'password.required' => 'Vui lòng nhập Password!',
+        ]);
+        if (Auth::attempt($validate, $request->filled('remember'))) {
+            // Xác thực thành công
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('home'))->with('success', 'Đăng nhập thành công!');
         }
-        return redirect()->back()->with('error','Sai Tài Khoản Hoặc Mật Khẩu');
+
+        // Xác thực thất bại
+        return back()->withErrors([
+            'error' => 'Email hoặc Password không đúng.',
+        ])->withInput($request->only('email', 'remember'));
     }
     public function logoutuser(){
         Auth::logout();
