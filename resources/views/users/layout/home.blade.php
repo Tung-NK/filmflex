@@ -9,3 +9,5 @@
 
 
 @include('users.layout.footer')
+
+@yield('script')

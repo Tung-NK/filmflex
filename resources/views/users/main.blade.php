@@ -7,6 +7,71 @@
 
 @section('main')
     <!-- home -->
+    <section class="home home--hero">
+        <div class="container">
+            <div class="row">
+                <!-- hero carousel -->
+                <div class="col-12">
+                    <div class="hero splide splide--hero">
+                        <div class="splide__arrows">
+                            <button class="splide__arrow splide__arrow--prev" type="button">
+                                <i class="ti ti-chevron-left"></i>
+                            </button>
+                            <button class="splide__arrow splide__arrow--next" type="button">
+                                <i class="ti ti-chevron-right"></i>
+                            </button>
+                        </div>
+
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide">
+                                    <div class="hero__slide" data-bg="{{ asset('assets_user/img/bg/slide__bg-1.jpg') }}">
+                                        <div class="hero__content">
+                                            <h2 class="hero__title">Savage Beauty <sub class="green">9.8</sub></h2>
+                                            <p class="hero__text">A brilliant scientist discovers a way to harness the
+                                                power of the ocean's currents to create a new, renewable energy source. But
+                                                when her groundbreaking technology falls into the wrong hands, she must race
+                                                against time to stop it from being used for evil.</p>
+                                            <p class="hero__category">
+                                                <a href="#">Action</a>
+                                                <a href="#">Drama</a>
+                                                <a href="#">Comedy</a>
+                                            </p>
+                                            <div class="hero__actions">
+                                                <a href="details.html" class="hero__btn">
+                                                    <span>Watch now</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="splide__slide">
+                                    <div class="hero__slide" data-bg="{{ asset('assets_user/img/bg/slide__bg-2.jpg') }}">
+                                        <div class="hero__content text-start"> <!-- Thêm text-start -->
+                                            <h2 class="hero__title">From the Other Side <sub class="yellow">6.9</sub></h2>
+                                            <p class="hero__text">In a world where magic is outlawed and hunted, a young
+                                                witch must use her powers to fight back against the corrupt authorities who
+                                                seek to destroy her kind.</p>
+                                            <p class="hero__category">
+                                                <a href="#">Adventure</a>
+                                                <a href="#">Triler</a>
+                                            </p>
+                                            <div class="hero__actions">
+                                                <a href="details.html" class="hero__btn">
+                                                    <span>Watch now</span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- hero carousel -->
+                        </div>
+                    </div>
+    </section>
+    <!-- end home -->
+
+    <!-- home -->
     <section class="home">
         <div class="container">
             <div class="row">
@@ -1182,7 +1247,8 @@
                                         <i class="ti ti-player-play-filled"></i>
                                     </a>
                                     <span class="item__rate item__rate--green">7.1</span>
-                                    <button class="item__favorite" type="button"><i class="ti ti-bookmark"></i></button>
+                                    <button class="item__favorite" type="button"><i
+                                            class="ti ti-bookmark"></i></button>
                                 </div>
                                 <div class="item__content">
                                     <h3 class="item__title"><a href="details.html">Benched</a></h3>
@@ -1203,7 +1269,8 @@
                                         <i class="ti ti-player-play-filled"></i>
                                     </a>
                                     <span class="item__rate item__rate--red">6.3</span>
-                                    <button class="item__favorite" type="button"><i class="ti ti-bookmark"></i></button>
+                                    <button class="item__favorite" type="button"><i
+                                            class="ti ti-bookmark"></i></button>
                                 </div>
                                 <div class="item__content">
                                     <h3 class="item__title"><a href="details.html">Whitney</a></h3>

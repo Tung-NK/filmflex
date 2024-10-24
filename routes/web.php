@@ -9,23 +9,34 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Admin\ActorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AuthenController;
-use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\User\AccountController;
 use App\Http\Controllers\Admin\CountrieController;
 use App\Http\Controllers\admin\DirectorController;
 use App\Http\Controllers\Admin\MovieController;
 
 use App\Http\Controllers\User\UserController;
+use Illuminate\Support\Facades\Auth;
+
+Route::middleware('checkUser')->group(function () {
+    //Trang chủ
+    Route::get('/', [HomeController::class, 'index'])->name('home')->withoutMiddleware('checkUser');
+
+    //Login-Logout User
+    Route::get('/login', [UserController::class, 'login'])->name('login')->withoutMiddleware('checkUser');
+    Route::post('/login', [UserController::class, 'postlogin'])->name('postlogin')->withoutMiddleware('checkUser');
+    Route::get('/register', [UserController::class, 'register'])->name('register')->withoutMiddleware('checkUser');
+    Route::post('/register', [UserController::class, 'postRegister'])->withoutMiddleware('checkUser');
+    Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser')->withoutMiddleware('checkUser');
+
+    Route::prefix('account')->name('account.')->group(function () {
+        Route::get('/', [AccountController::class, 'detailUser'])->name('detailUser');
+        Route::post('update', [AccountController::class, 'updateProfile'])->name('updateProfile');
+
+        Route::post('change-password', [AccountController::class, 'changePass'])->name('changePass');
+    });
+});
 
 
-
-//Trang chủ
-Route::get('/', [HomeController::class, 'index'])->name('home');
-//Login-Logout User
-Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::post('/login', [UserController::class, 'postlogin'])->name('postlogin');
-Route::get('/register', [UserController::class, 'register'])->name('register');
-Route::post('/register', [UserController::class, 'postRegister']);
-Route::get('/logoutuser', [UserController::class, 'logoutuser'])->name('logoutuser');
 
 
 Route::prefix('admin')->middleware('checkAdmin')->group(function () {
@@ -69,7 +80,3 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
         Route::resource('/', DirectorController::class)->parameters(['' => 'director']);
     });
 });
-
-
-
-Route::prefix('/')->middleware('...')->group(function () {});

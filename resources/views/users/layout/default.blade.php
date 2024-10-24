@@ -23,9 +23,9 @@
     <link rel="icon" type="image/png" href="{{ asset('assets_user/icon/fil.png') }}" sizes="32x32">
     <link rel="apple-touch-icon" href="{{ asset('assets_user/icon/fil.png') }}" sizes="32x32">
 
-    <meta name="description" content="Online Movies, TV Shows & Cinema HTML Template">
+    {{-- <meta name="description" content="Online Movies, TV Shows & Cinema HTML Template">
     <meta name="keywords" content="">
-    <meta name="author" content="Dmitry Volkov">
+    <meta name="author" content="Dmitry Volkov"> --}}
     <title>
         @section('title')
             FilmFlex |

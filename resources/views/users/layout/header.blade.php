@@ -78,7 +78,7 @@
 
                     <!-- header auth -->
                     <div class="header__auth">
-                        <form action="#" class="header__search">
+                        <form action="#" class="header__search m-0">
                             <input class="header__search-input" type="text" placeholder="Search...">
                             <button class="header__search-button" type="button">
                                 <i class="ti ti-search"></i>
@@ -106,32 +106,32 @@
                         <!-- end dropdown -->
 
                         <!-- dropdown -->
-                        @if(Auth::check())
-                        <div class="header__profile">
-                            <a class="header__sign-in header__sign-in--user" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-user"></i>
-                                <span>{{ Auth::user()->name }}</span>
-                            </a>
-
-                            <ul
-                                class="dropdown-menu dropdown-menu-end header__dropdown-menu header__dropdown-menu--user">
-                                <li><a href="profile.html"><i class="ti ti-ghost"></i>Profile</a></li>
-                                <li><a href="profile.html"><i class="ti ti-stereo-glasses"></i>Subscription</a>
-                                </li>
-                                <li><a href="profile.html"><i class="ti ti-bookmark"></i>Favorites</a></li>
-                                <li><a href="profile.html"><i class="ti ti-settings"></i>Settings</a></li>
-                                <li><a href="{{ route('logoutuser') }}"><i class="ti ti-logout"></i>Logout</a></li>
-                            </ul>
-                        </div>
+                        @if (Auth::check())
+                            <div class="header__profile">
+                                <a class="header__sign-in header__sign-in--user" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="ti ti-user"></i>
+                                    <span>{{ Auth::user()->name }}</span>
+                                </a>
+                                <ul
+                                    class="dropdown-menu dropdown-menu-end header__dropdown-menu header__dropdown-menu--user">
+                                    <li><a href="{{route('account.detailUser')}}"><i class="ti ti-ghost"></i>Profile</a></li>
+                                    <li><a href="profile.html"><i class="ti ti-stereo-glasses"></i>Subscription</a>
+                                    </li>
+                                    <li><a href="profile.html"><i class="ti ti-bookmark"></i>Favorites</a></li>
+                                    <li><a href="profile.html"><i class="ti ti-settings"></i>Settings</a></li>
+                                    <li><a href="{{ route('logoutuser') }}"><i class="ti ti-logout"></i>Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
                         @else
-                        <div class="header__profile">
-                            <a class="header__sign-in header__sign-in--user" href="{{ route('login') }}" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ti ti-user"></i>
-                                <span>Nich Name</span>
-                            </a>
-                        </div>
+                            <div class="header__profile">
+                                <a class="header__sign-in header__sign-in--user" href="{{ route('login') }}"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="ti ti-user"></i>
+                                    <span>Nich Name</span>
+                                </a>
+                            </div>
                         @endif
                         <!-- end dropdown -->
                     </div>
@@ -151,85 +151,3 @@
 </header>
 <!-- end header -->
 
-<!-- home -->
-<section class="home home--hero">
-    <div class="container">
-        <div class="row">
-            <!-- hero carousel -->
-            <div class="col-12">
-                <div class="hero splide splide--hero">
-                    <div class="splide__arrows">
-                        <button class="splide__arrow splide__arrow--prev" type="button">
-                            <i class="ti ti-chevron-left"></i>
-                        </button>
-                        <button class="splide__arrow splide__arrow--next" type="button">
-                            <i class="ti ti-chevron-right"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            <li class="splide__slide">
-                                <div class="hero__slide" data-bg="{{asset('assets_user/img/bg/slide__bg-1.jpg')}}">
-                                    <div class="hero__content">
-                                        <h2 class="hero__title">Savage Beauty <sub class="green">9.8</sub></h2>
-                                        <p class="hero__text">A brilliant scientist discovers a way to harness the power of the ocean's currents to create a new, renewable energy source. But when her groundbreaking technology falls into the wrong hands, she must race against time to stop it from being used for evil.</p>
-                                        <p class="hero__category">
-                                            <a href="#">Action</a>
-                                            <a href="#">Drama</a>
-                                            <a href="#">Comedy</a>
-                                        </p>
-                                        <div class="hero__actions">
-                                            <a href="details.html" class="hero__btn">
-                                                <span>Watch now</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="splide__slide">
-                                <div class="hero__slide" data-bg="{{asset('assets_user/img/bg/slide__bg-2.jpg')}}">
-                                    <div class="hero__content">
-                                        <h2 class="hero__title">From the Other Side <sub class="yellow">6.9</sub></h2>
-                                        <p class="hero__text">In a world where magic is outlawed and hunted, a young witch must use her powers to fight back against the corrupt authorities who seek to destroy her kind.</p>
-                                        <p class="hero__category">
-                                            <a href="#">Adventure</a>
-                                            <a href="#">Triler</a>
-                                        </p>
-                                        <div class="hero__actions">
-                                            <a href="details.html" class="hero__btn">
-                                                <span>Watch now</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="splide__slide">
-                                <div class="hero__slide" data-bg="{{asset('assets_user/img/bg/slide__bg-3.jpg')}}">
-                                    <div class="hero__content">
-                                        <h2 class="hero__title">Endless Horizon <sub class="red">6.2</sub></h2>
-                                        <p class="hero__text">When a renowned archaeologist goes missing, his daughter sets out on a perilous journey to the heart of the Amazon rainforest to find him. Along the way, she discovers a hidden city and a dangerous conspiracy that threatens the very balance of power in the world.</p>
-                                        <p class="hero__category">
-                                            <a href="#">Action</a>
-                                            <a href="#">Drama</a>
-                                            <a href="#">Triler</a>
-                                        </p>
-                                        <div class="hero__actions">
-                                            <a href="details.html" class="hero__btn">
-                                                <span>Watch now</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- hero carousel -->
-        </div>
-    </div>
-</section>
-<!-- end home -->
