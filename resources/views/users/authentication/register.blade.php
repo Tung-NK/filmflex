@@ -14,21 +14,21 @@
                         <div class="sign__group">
                             <input type="text" class="sign__input mb-1 @error('name') is-invalid @enderror" placeholder="Name" name="name">
                             @error('name')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                            <span class="text-danger">{{ $message }}</span>               
                             @enderror
                         </div>
 
                         <div class="sign__group">
                             <input type="text" class="sign__input mb-1 @error('email') is-invalid @enderror" placeholder="Email" name="email">
                             @error('email')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="sign__group">
                             <input type="password" class="sign__input mb-1 @error('password') is-invalid @enderror" placeholder="Password" name="password">
                             @error('password')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 

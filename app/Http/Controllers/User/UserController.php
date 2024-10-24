@@ -17,6 +17,9 @@ class UserController extends Controller
     public function register(){
         return view('users.authentication.register');
     }
+    public function resetpassword(){
+        return view('users.authentication.resetpassword');
+    }
     public function postRegister(LoginRequest $request){
         $request->merge(['password'=>Hash::make($request->password)]);
         User::create($request->all());

@@ -15,13 +15,14 @@ use App\Http\Controllers\User\UserController;
 
 //Trang chủ
 Route::get('/',[HomeController::class,'index'])->name('home');
-//Login-Logout User
+//Login-Logout-Register-Resetpass User
 Route::get('/login',[UserController::class,'login'])->name('login');
 Route::post('/login',[UserController::class,'postlogin'])->name('postlogin');
 Route::get('/register',[UserController::class,'register'])->name('register');
 Route::post('/register',[UserController::class, 'postRegister']);
 Route::get('/logoutuser',[UserController::class,'logoutuser'])->name('logoutuser');
-
+Route::get('/resetpassword',[UserController::class,'resetpassword'])->name('resetpassword');
+Route::post('/resetpassword',[UserController::class, 'resetpassword']);
 
 Route::prefix('admin')->middleware('checkAdmin')->group(function () {
     Route::get('/', [AuthenController::class, 'formLogin'])->name('formLogin')->withoutMiddleware('checkAdmin');
