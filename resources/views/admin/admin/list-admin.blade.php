@@ -13,9 +13,7 @@
                 <div class="col-12">
                     <div class="main__title">
                         <h2>Admin</h2>
-
-                        <span class="main__title-stat">14,452 Total</span>
-
+                        <span class="main__title-stat">{{ $totalAdmin }} Total</span>
                         <div class="main__title-wrap">
                             <a href="{{ route('admin-management.admins.create') }}"
                                 class="main__title-link main__title-link--wrap">Add

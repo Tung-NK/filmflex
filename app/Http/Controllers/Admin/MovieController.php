@@ -12,7 +12,8 @@ class MovieController extends Controller
     public function index()
     {
         $movies = Movie::withTrashed()->paginate(5);
-        return view('admin.catalog.list-catalog', compact('movies'));
+        $totalMovie = Movie::count();
+        return view('admin.catalog.list-catalog', compact('movies', 'totalMovie'));
     }
 
     /**

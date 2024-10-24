@@ -14,7 +14,7 @@
                     <div class="main__title">
                         <h2>Catalog</h2>
 
-                        <span class="main__title-stat">14,452 Total</span>
+                        <span class="main__title-stat">{{ $totalMovie }} Total</span>
 
                         <div class="main__title-wrap">
                             <a href="{{ route('movie.catalog.create') }}"

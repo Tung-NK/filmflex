@@ -17,7 +17,8 @@ class AdminController extends Controller
     public function index()
     {
         $admin = User::where('role', 0)->withTrashed()->paginate(5);
-        return view('admin.admin.list-admin', compact('admin'));
+        $totalAdmin = User::count();
+        return view('admin.admin.list-admin', compact('admin', 'totalAdmin'));
     }
 
     /**
