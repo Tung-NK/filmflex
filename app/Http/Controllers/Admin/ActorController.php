@@ -11,23 +11,24 @@ use Illuminate\Http\Request;
 
 class ActorController extends Controller
 {
-    
     const PATH_VIEW='admin/actors.';
     public function index(Request $request)
     {
-        //$data = Actor::query()->get();
-        $search = $request->input('search');
-        $data = Actor::withTrashed()->when($search, function ($query) use ($search) {
-            return $query->where('actor_name', 'LIKE', "%{$search}%");
-        })->paginate(4);
-         // Lấy thông tin cần thiết cho paginator
-        $currentPage = $data->currentPage(); // Trang hiện tại
-        $total = $data->total(); // Tổng số item
-        $perPage = $data->perPage(); // Số lượng item trên mỗi trang
-        $totalPages = $data->lastPage(); // Tổng số trang
-
-        return view(self::PATH_VIEW.__FUNCTION__,compact('data', 'currentPage', 'total', 'perPage', 'totalPages', 'search'));
+    $search = $request->input('search');
+    $data = Actor::withTrashed()->when($search, function ($query) use ($search) {
+        return $query->where('actor_name', 'LIKE', "%{$search}%");
+    })->paginate(4);
+    $currentPage = $data->currentPage();
+    $totalPages = $data->lastPage();
+    if ($request->ajax() && $search) {
+        $actors = Actor::where('actor_name', 'LIKE', "%{$search}%")->get();
+        return response()->json($actors);
     }
+    $searchMessage = $search ? "Tìm kiếm thành công: $search" : null;
+    return view(self::PATH_VIEW . 'index', compact('data', 'search', 'currentPage', 'totalPages', 'searchMessage'));
+    }
+
+
 
    
     public function create()
@@ -58,7 +59,8 @@ class ActorController extends Controller
         $data=$request->except('image');
        $data['type']=isset($request->type)?1:0;
        if($request->hasFile('image')){
-        $data['image']=Storage::put('actors', $request->file('image'));
+        //  $data['image']=Storage::put('actors', $request->file('image'));
+        $data['image'] = $request->file('image')->store('actors', 'public');
        }else{
         $data['image']='';
        }
@@ -88,16 +90,13 @@ class ActorController extends Controller
         ]);
         $data=$request->except('image');
         $data['type']=isset($request->type) ? 1 : 0;
-        if($request->hasFile('image')){
-            $data['image']=Storage::put('actors',$request->file('image'));
-            //
-            if(!empty($actor->image)&& Storage::exists($actor->image)){
-                Storage::delete($actor->image);
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('actors', 'public');
+            if (!empty($actor->image) && Storage::disk('public')->exists($actor->image)) {
+                Storage::disk('public')->delete($actor->image);
             }
-            //
-        }else{
-            $data['image']= $actor->image;
-            
+        } else {
+            $data['image'] = $actor->image;
         }
        //
        $actor->update($data);

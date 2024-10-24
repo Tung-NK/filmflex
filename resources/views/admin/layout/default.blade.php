@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- CSS -->php ac
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('assets_admin/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_admin/css/slimselect.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_admin/css/admin.css') }}">

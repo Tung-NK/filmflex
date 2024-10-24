@@ -40,8 +40,8 @@
                     <form action="{{ route('actors.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="actor_name" class="form-label" style="color: white;">Actor Name:</label>
-                            <input type="text" id="actor_name" name="actor_name" class="form-control" value="{{ old('actor_name') }}" >
+                            <label for="actor_name" class="form-label " style="color: white;">Actor Name:</label>
+                            <input type="text" id="actor_name" name="actor_name" class="sign__input " value="{{ old('actor_name') }}" >
                             @if ($errors->has('actor_name'))
                             <span class="text-danger">{{ $errors->first('actor_name') }}</span>
                             @endif
@@ -50,16 +50,16 @@
 
                         <div class="mb-3">
                             <label for="biography" class="form-label" style="color: white;">Biography:</label>
-                            <textarea id="biography" name="biography" class="form-control" >{{ old('biography') }}</textarea>
+                            <textarea id="biography" name="biography" class="sign__textarea" >{{ old('biography') }}</textarea>
                             @if ($errors->has('biography'))
                             <span class="text-danger">{{ $errors->first('biography') }}</span>
                             @endif
                         </div>
 
-                        <div class="mb-3">
-                        <label for="image" class="form-label text-white">Image:</label>
+                        <div class="mb-3 sign__gallery">
+                        <label for="image" class="form-label text-white">Upload Image Actor</label>
                         <input type="file" id="image" name="image" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}">
-                        <small class="form-text text-white">Please select the image again if there are other errors.</small> <!-- Thông báo người dùng chọn lại -->
+                       
                         
                         @if ($errors->has('image'))
                             <span class="text-danger">{{ $errors->first('image') }}</span>

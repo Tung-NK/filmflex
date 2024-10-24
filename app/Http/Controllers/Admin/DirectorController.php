@@ -11,12 +11,27 @@ class DirectorController extends Controller
 
 
     //liet ke - react
-    public function index()
+    public function index(Request $request)
     {
-        $directors = Director::paginate(10);
-        return view('admin.director.index', [
-            'directors' => $directors
-        ]);
+       
+    $searchMessage = '';
+    $search = $request->input('search');
+    
+    $directors = Director::when($search, function ($query) use ($search) {
+        return $query->where('director_name', 'LIKE', "%{$search}%");
+    })->paginate(10);
+    if ($request->ajax() && $search) {
+        $directors = Director::where('director_name', 'LIKE', "%{$search}%")->get();
+        return response()->json($directors);
+    }
+    if ($search) {
+        $searchMessage = "Showing results for: '{$search}'";
+    }
+    return view('admin.director.index', [
+        'directors' => $directors,
+        'search' => $search,
+        'searchMessage' => $searchMessage 
+    ]);
     }
    
     

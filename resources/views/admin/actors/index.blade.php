@@ -4,15 +4,18 @@
     Actor
 @endsection
 
+
 <main class="main">
     <div class="container-fluid">
         <div class="row">
+            <!-- menu bên trái -->
+            
 
-            <!-- main title -->
-            <div class="col-12">
+            <!-- nội dung chính -->
+            
                 <div class="main__title">
                     <h2>Actor</h2>
-                    <span class="main__title-stat">14,452 Total</span>
+                    <span class="main__title-stat">{{ $data->total() }} Total</span>
                     <div class="main__title-wrap">
                         <a href="{{ route('actors.create') }}" class="main__title-link main__title-link--wrap">Add Actor</a>
                         <select class="filter__select" name="sort" id="filter__sort">
@@ -21,26 +24,23 @@
                             <option value="2">Views</option>
                         </select>
                         <!-- search -->
-                        <form action="{{ route('actors.index') }}" method="GET" class="main__title-form">
-                            <input type="text" name="search" placeholder="Find actor by name.." value="{{ request('search') }}">
-                            <button type="submit">
-                                <i class="ti ti-search"></i>
-                            </button>
+                        <form action="{{ route('actors.index') }}" method="GET" class="main__title-form" id="searchForm">
+                            <input type="text" name="search" id="searchInput" class="form-control" placeholder="Find actor by name.." value="{{ request('search') }}">
+                            <div id="searchSuggestions" class="search-suggestions" style="display: none;"></div>
                         </form>
                         <!-- end search -->
                     </div>
                 </div>
-            </div>
-            <!-- end main title -->
 
-            <!-- Thông báo tìm kiếm -->
-            @if ($search)
-                <div class="alert alert-info">
-                    Showing results for: <strong>{{ $search }}</strong>
-                </div>
-            @endif
+                <!-- Thông báo tìm kiếm -->
+                @if ($searchMessage)
+                    <div class="alert alert-success">
+                        {{ $searchMessage }}
+                    </div>
+                @endif
 
-            <div class="col-12">
+
+                <div class="col-12">
                 <div class="catalog catalog--1">
                     <table class="catalog__table">
                         <thead>
@@ -61,7 +61,7 @@
                                 <td><div class="catalog__text">{{ $item->biography }}</div></td>
                                 <td>
                                     <div class="catalog__text">
-                                        <img src="{{ asset('storage/' . $item->image) }}" width="100px" height="80px" alt="{{ $item->actor_name }}">
+                                        <img src="{{ asset('storage/' . $item->image) }}" width="100px"  alt="{{ $item->actor_name }}">
                                     </div>
                                 </td>
                                 <td>
@@ -77,7 +77,7 @@
                                     <div class="catalog__btns">
                                         @if(!$item->trashed())
                                             <div style="display: flex; align-items: center;">
-                                                <a href="{{ route('actors.edit', $item->id) }}" class="catalog__btn catalog__btn--edit  mb-3" style="height: 40px; padding: 0 10px; line-height: 40px;">
+                                                <a href="{{ route('actors.edit', $item->id) }}" class="catalog__btn catalog__btn--edit  mb-3 mt-6" style="height: 40px; padding: 0 10px; line-height: 40px;">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form action="{{ route('actors.destroy', $item->id) }}" method="POST" style="display:inline; margin-left: 5px;">
@@ -113,8 +113,8 @@
                     </table>
                 </div>
             </div>
-
-           <!-- paginator -->
+           
+            <!-- paginator -->
            <div class="col-12">
                <div class="main__paginator d-flex justify-content-between align-items-center text-white">
                    <!-- amount -->
@@ -148,3 +148,81 @@
         </div>
     </div>
 </main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#searchInput').on('keyup', function() {
+            let query = $(this).val().trim();
+            if (query.length > 0) {
+                $.ajax({
+                    url: "{{ route('actors.index') }}",
+                    method: "GET",
+                    data: { search: query },
+                    success: function(data) {
+                        let suggestions = '';
+                        data.forEach(function(actor) {
+                            suggestions += `
+                                <a href="#" class="suggestion-item" data-id="${actor.id}">
+                                    <img src="{{ asset('storage/') }}/${actor.image}" width="50px" height="50px" alt="${actor.actor_name}">
+                                    <span>${actor.actor_name}</span>
+                                </a>`;
+                        });
+                        $('#searchSuggestions').html(suggestions).show();
+                    }
+                });
+            } else {
+                $('#searchSuggestions').hide();
+            }
+        });
+
+            $(document).on('click', '.suggestion-item', function() {
+                let actorId = $(this).data('id');
+                let actorName = $(this).text().trim();
+                $('#searchInput').val(actorName);
+                $('#searchSuggestions').hide();
+                $.ajax({
+                    url: "{{ route('actors.index') }}",
+                    method: "GET",
+                    data: { search: actorName },
+                    success: function(response) {
+                        $('#searchForm').submit(); 
+                    }
+                });
+            });
+
+    });
+</script>
+
+<style>
+    
+    .search-suggestions {
+        border: 1px solid  #222027;
+        border-radius: 4px;
+        max-height: 200px;
+        overflow-y: auto;
+        background-color: #222027;
+        position: absolute;
+        z-index: 1000;
+        width: calc(100% - 0rem); 
+    }
+
+    .suggestion-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        text-decoration: none ;
+        color: white;
+    }
+
+    .suggestion-item:hover {
+        background-color: #222027;
+        border: 3px solid orange;
+    }
+
+    .suggestion-item img {
+        margin-right: 10px;
+        border-radius: 50%;
+    }
+</style>
+

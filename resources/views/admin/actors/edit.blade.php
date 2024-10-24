@@ -40,29 +40,31 @@
                         
                                     <div class="mb-3">
                                         <label for="actor_name" class="form-label text-white">Actor Name:</label>
-                                        <input type="text" id="actor_name" name="actor_name" class="form-control {{ $errors->has('actor_name') ? 'is-invalid' : '' }}" value="{{ old('actor_name', $actor->actor_name) }}" required>
+                                        <input type="text" id="actor_name" name="actor_name" class="sign__input {{ $errors->has('actor_name') ? 'is-invalid' : '' }}" value="{{ old('actor_name', $actor->actor_name) }}" required>
                                         @if ($errors->has('actor_name'))
                                             <span class="text-danger">{{ $errors->first('actor_name') }}</span>
                                         @endif
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="image" class="form-label text-white">Image:</label>
-                                        <div class="mb-2">
+                                    <div class="col-12">
+                                        <div class="sign__group">
+                                            <div class="sign__gallery">
+                                                <label id="gallery1" for="sign__gallery-upload">{{ $actor->image ? basename($actor->image) : 'Choose Image' }}</label>
+                                                <input data-name="#gallery1" id="sign__gallery-upload" name="image" class="sign__gallery-upload" type="file" accept=".png, .jpg, .jpeg">
+                                            </div>
+                                            @error('image')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                             @if ($actor->image)
-                                                <img src="{{ asset('storage/' . $actor->image) }}" width="200px" height="160px" alt="{{ $actor->actor_name }}" class="mb-2">
+                                                <img src="{{ asset('storage/' . $actor->image) }}" alt="{{ $actor->actor_name }}" width="200px">
                                             @endif
                                         </div>
-                                        <input type="file" id="image" name="image" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}">
-                                        <small class="form-text text-white">Select a new image if you want to change it.</small>
-                                        @if ($errors->has('image'))
-                                            <span class="text-danger">{{ $errors->first('image') }}</span>
-                                        @endif
                                     </div>
+
 
                                     <div class="mb-3">
                                         <label for="biography" class="form-label text-white">Biography:</label>
-                                        <textarea id="biography" name="biography" class="form-control {{ $errors->has('biography') ? 'is-invalid' : '' }}" required>{{ old('biography', $actor->biography) }}</textarea>
+                                        <textarea id="biography" name="biography" class="sign__textarea {{ $errors->has('biography') ? 'is-invalid' : '' }}" required>{{ old('biography', $actor->biography) }}</textarea>
                                         @if ($errors->has('biography'))
                                             <span class="text-danger">{{ $errors->first('biography') }}</span>
                                         @endif
