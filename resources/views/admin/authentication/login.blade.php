@@ -50,7 +50,7 @@
 
                         <span class="sign__text">Don't have an account? <a href="signup.html">Sign up!</a></span>
 
-                        <span class="sign__text"><a href="forgot.html">Forgot password?</a></span>
+                        <span class="sign__text"><a href="{{route('forgotPass')}}">Forgot password?</a></span>
                     </form>
                     <!-- end authorization form -->
                 </div>

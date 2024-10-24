@@ -68,6 +68,14 @@
             </li>
 
             <li class="sidebar__nav-item">
+                <a href="{{route('countrie.listCountrie')}}" class="sidebar__nav-link"><i class="ti ti-Globe"></i> <span>Countries</span></a>
+            </li>
+
+            <li class="sidebar__nav-item">
+                <a href="{{route('showtime.listShowtime')}}" class="sidebar__nav-link"><i class="ti ti-showtime"></i> <span>Showtime</span></a>
+            </li>
+
+            <li class="sidebar__nav-item">
                 <a href="comments.html" class="sidebar__nav-link"><i class="ti ti-message"></i>
                     <span>Comments</span></a>
             </li>
